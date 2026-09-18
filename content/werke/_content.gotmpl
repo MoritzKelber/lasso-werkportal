@@ -1,12 +1,16 @@
-{{/* Erzeugt eine Detailseite pro Werk aus data/werke.json (kein Content-File pro Werk nötig). */}}
+{{/* Erzeugt eine Detailseite pro Werk aus data/werke.json (kein Content-File pro Werk nötig).
+     Weitere Teile (LV-Nummern mit "-N") bekommen keine eigene Detailseite, sondern werden
+     auf der Seite ihres Hauptteils mit aufgelistet (siehe layouts/werke/single.html). */}}
 {{ $ctx := . }}
 {{ range hugo.Data.werke }}
+  {{ if not .lv_unter }}
   {{ $ctx.AddPage (dict
       "kind" "page"
       "path" (printf "%.0f" .id)
       "title" .titel
       "params" (dict
           "lvNummer" .lv_nummer
+          "lvHaupt" .lv_haupt
           "stimmen" .stimmen
           "edition" .edition
           "textdichter" .textdichter
@@ -14,4 +18,5 @@
           "quelle" .quelle
       )
   ) }}
+  {{ end }}
 {{ end }}

@@ -83,6 +83,15 @@ tr.hidden {
   display: none;
 }
 
+tr.unterwerk {
+  background: rgba(128, 128, 128, 0.15);
+  color: #666;
+}
+
+.weitere-teile ul {
+  padding-left: 1.2rem;
+}
+
 .site-footer {
   margin-top: 2rem;
   padding-top: 1rem;

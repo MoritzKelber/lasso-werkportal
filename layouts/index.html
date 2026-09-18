@@ -21,9 +21,9 @@
   </thead>
   <tbody>
     {{ range hugo.Data.werke }}
-    <tr data-titel="{{ lower .titel }}" data-textdichter="{{ lower .textdichter }}" data-stimmen="{{ .stimmen }}">
+    <tr data-titel="{{ lower .titel }}" data-textdichter="{{ lower .textdichter }}" data-stimmen="{{ .stimmen }}"{{ if .lv_unter }} class="unterwerk"{{ end }}>
       <td data-key="lv">{{ .lv_nummer }}</td>
-      <td data-key="titel"><a href="{{ "werke/" | relURL }}{{ printf "%.0f" .id }}/" target="_blank" rel="noopener">{{ .titel }}</a></td>
+      <td data-key="titel">{{ if .lv_unter }}{{ .titel }}{{ else }}<a href="{{ "werke/" | relURL }}{{ printf "%.0f" .id }}/" target="_blank" rel="noopener">{{ .titel }}</a>{{ end }}</td>
       <td data-key="stimmen">{{ if .stimmen }}{{ .stimmen }}{{ end }}</td>
       <td data-key="edition">{{ .edition }}</td>
       <td data-key="textdichter">{{ .textdichter }}</td>

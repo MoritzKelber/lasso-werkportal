@@ -31,5 +31,23 @@
     <dd>{{ . }}</dd>
     {{ end }}
   </dl>
+
+  {{ $haupt := .Params.lvHaupt }}
+  {{ $teile := slice }}
+  {{ range hugo.Data.werke }}
+    {{ if and .lv_unter (eq .lv_haupt $haupt) }}
+      {{ $teile = $teile | append . }}
+    {{ end }}
+  {{ end }}
+  {{ with $teile }}
+  <section class="weitere-teile">
+    <h2>Weitere Teile dieser Komposition</h2>
+    <ul>
+      {{ range . }}
+      <li>{{ .titel }}{{ with .stimmen }} · {{ . }} Stimmen{{ end }}</li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
 </article>
 {{ end }}
