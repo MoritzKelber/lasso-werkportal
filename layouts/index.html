@@ -1,0 +1,37 @@
+{{ define "main" }}
+<section class="controls">
+  <input type="search" id="suche" placeholder="Suche nach Titel oder Textdichter…" autocomplete="off">
+  <label>Stimmen:
+    <select id="filter-stimmen"><option value="">alle</option></select>
+  </label>
+  <p id="treffer-anzahl" class="hint"></p>
+</section>
+
+<table id="werke-tabelle">
+  <thead>
+    <tr>
+      <th data-sort="text" data-key="lv">LV</th>
+      <th data-sort="text" data-key="titel">Titel</th>
+      <th data-sort="num" data-key="stimmen">Stimmen</th>
+      <th data-sort="text" data-key="edition">Ersterscheinung</th>
+      <th data-sort="text" data-key="textdichter">Textdichter</th>
+      <th data-sort="text" data-key="textprovenienz">Textprovenienz</th>
+      <th data-sort="text" data-key="quelle">Gesamtaufnahme</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range hugo.Data.werke }}
+    <tr data-titel="{{ lower .titel }}" data-textdichter="{{ lower .textdichter }}" data-stimmen="{{ .stimmen }}">
+      <td data-key="lv">{{ .lv_nummer }}</td>
+      <td data-key="titel">{{ .titel }}</td>
+      <td data-key="stimmen">{{ if .stimmen }}{{ .stimmen }}{{ end }}</td>
+      <td data-key="edition">{{ .edition }}</td>
+      <td data-key="textdichter">{{ .textdichter }}</td>
+      <td data-key="textprovenienz">{{ .textprovenienz }}</td>
+      <td data-key="quelle">{{ .quelle }}</td>
+    </tr>
+    {{ end }}
+  </tbody>
+</table>
+<script src="{{ "js/search.js" | relURL }}"></script>
+{{ end }}

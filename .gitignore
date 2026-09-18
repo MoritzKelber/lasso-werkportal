@@ -1,0 +1,22 @@
+# Hugo build output
+public/
+resources/
+.hugo_build.lock
+
+# von scripts/export.py generierte Dateien (werden bei jedem Build neu erzeugt)
+# db/werke.sql wird bewusst NICHT ignoriert: es ist der lesbare Textdiff-Begleiter
+# zu werke.sqlite und soll mitversioniert werden.
+/data/werke.json
+/static/werke.ttl
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# OS
+Thumbs.db
+.DS_Store
+
+# lokale Claude-Code-Einstellungen
+.claude/

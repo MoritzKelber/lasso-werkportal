@@ -1,0 +1,96 @@
+:root {
+  color-scheme: light dark;
+  --border: #ccc;
+  --accent: #5b3a8e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 0 1rem 3rem;
+  line-height: 1.5;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--accent);
+}
+
+.site-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header nav a {
+  margin-right: 1rem;
+  color: inherit;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.controls input[type="search"] {
+  flex: 1 1 20rem;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+}
+
+.hint {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  cursor: pointer;
+  background: rgba(91, 58, 142, 0.08);
+  position: sticky;
+  top: 0;
+}
+
+th::after {
+  content: "⇅";
+  opacity: 0.4;
+  margin-left: 0.3rem;
+  font-size: 0.8em;
+}
+
+tr.hidden {
+  display: none;
+}
+
+.site-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.content {
+  max-width: 60rem;
+}

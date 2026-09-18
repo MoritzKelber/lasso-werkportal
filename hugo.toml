@@ -1,0 +1,4 @@
+baseURL = 'https://moritzkelber.github.io/lasso-werkportal/'
+locale = 'de-DE'
+title = 'Orlando di Lasso – Werkportal'
+disableKinds = ['taxonomy', 'term']
