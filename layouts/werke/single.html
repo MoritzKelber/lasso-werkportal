@@ -1,0 +1,35 @@
+{{ define "main" }}
+<article class="content werk-detail">
+  <p><a href="{{ .Site.Home.RelPermalink }}">&larr; zurück zur Werkübersicht</a></p>
+  <h1>{{ .Title }}</h1>
+  <dl>
+    <dt>LV-Nummer</dt>
+    <dd>{{ .Params.lvNummer }}</dd>
+
+    {{ with .Params.stimmen }}
+    <dt>Stimmen</dt>
+    <dd>{{ . }}</dd>
+    {{ end }}
+
+    {{ with .Params.edition }}
+    <dt>Ersterscheinung</dt>
+    <dd>{{ . }}</dd>
+    {{ end }}
+
+    {{ with .Params.textdichter }}
+    <dt>Textdichter</dt>
+    <dd>{{ . }}</dd>
+    {{ end }}
+
+    {{ with .Params.textprovenienz }}
+    <dt>Textprovenienz</dt>
+    <dd>{{ . }}</dd>
+    {{ end }}
+
+    {{ with .Params.quelle }}
+    <dt>Gesamtaufnahme</dt>
+    <dd>{{ . }}</dd>
+    {{ end }}
+  </dl>
+</article>
+{{ end }}

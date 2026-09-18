@@ -1,0 +1,17 @@
+{{/* Erzeugt eine Detailseite pro Werk aus data/werke.json (kein Content-File pro Werk nötig). */}}
+{{ $ctx := . }}
+{{ range hugo.Data.werke }}
+  {{ $ctx.AddPage (dict
+      "kind" "page"
+      "path" (printf "%.0f" .id)
+      "title" .titel
+      "params" (dict
+          "lvNummer" .lv_nummer
+          "stimmen" .stimmen
+          "edition" .edition
+          "textdichter" .textdichter
+          "textprovenienz" .textprovenienz
+          "quelle" .quelle
+      )
+  ) }}
+{{ end }}

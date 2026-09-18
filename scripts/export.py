@@ -12,7 +12,6 @@ Aufruf: python scripts/export.py
 import json
 import sqlite3
 from pathlib import Path
-from urllib.parse import quote
 
 from rdflib import DCTERMS, Graph, Literal, Namespace, URIRef
 from rdflib.namespace import RDF
@@ -29,7 +28,7 @@ WERK = Namespace(SITE_BASE + "werke/")
 
 QUERY = """
 SELECT
-    w.lv_nummer, w.lv_haupt, w.lv_unter, w.lv_teil, w.titel, w.stimmen,
+    w.id, w.lv_nummer, w.lv_haupt, w.lv_unter, w.lv_teil, w.titel, w.stimmen,
     w.textprovenienz, p.name AS textdichter, e.code AS edition, q.referenz AS quelle
 FROM werke w
 LEFT JOIN personen  p ON p.id = w.textdichter_id
@@ -59,7 +58,8 @@ def write_ttl(werke: list[dict]) -> None:
     g.bind("lasso", LASSO)
 
     for werk in werke:
-        subject = URIRef(WERK[quote(werk["lv_nummer"])])
+        # Werk-URI entspricht der Detailseiten-URL auf der Website (/werke/<id>/).
+        subject = URIRef(WERK[str(werk["id"])])
         g.add((subject, RDF.type, LASSO.Werk))
         g.add((subject, DCTERMS.identifier, Literal(werk["lv_nummer"])))
         g.add((subject, DCTERMS.title, Literal(werk["titel"], lang="it")))

@@ -23,7 +23,7 @@
     {{ range hugo.Data.werke }}
     <tr data-titel="{{ lower .titel }}" data-textdichter="{{ lower .textdichter }}" data-stimmen="{{ .stimmen }}">
       <td data-key="lv">{{ .lv_nummer }}</td>
-      <td data-key="titel">{{ .titel }}</td>
+      <td data-key="titel"><a href="{{ "werke/" | relURL }}{{ printf "%.0f" .id }}/" target="_blank" rel="noopener">{{ .titel }}</a></td>
       <td data-key="stimmen">{{ if .stimmen }}{{ .stimmen }}{{ end }}</td>
       <td data-key="edition">{{ .edition }}</td>
       <td data-key="textdichter">{{ .textdichter }}</td>

@@ -8,9 +8,9 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="site-title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+    <a class="site-title" href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a>
     <nav>
-      <a href="{{ "/" | relURL }}">Werke</a>
+      <a href="{{ .Site.Home.RelPermalink }}">Werke</a>
       <a href="{{ "ueber/" | relURL }}">Über diese Datenbank</a>
       <a href="{{ "werke.ttl" | relURL }}">RDF-Export (Turtle)</a>
     </nav>
