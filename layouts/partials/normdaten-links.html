@@ -1,0 +1,2 @@
+{{/* Erwartet: dict "gnd" .textdichter_gnd "viaf" .textdichter_viaf */}}
+{{ with .gnd }}<a class="normdaten-icon" href="https://d-nb.info/gnd/{{ . }}" target="_blank" rel="noopener" title="Gemeinsame Normdatei (GND)">GND</a>{{ end }}{{ with .viaf }}<a class="normdaten-icon" href="https://viaf.org/viaf/{{ . }}" target="_blank" rel="noopener" title="Virtual International Authority File (VIAF)">VIAF</a>{{ end }}

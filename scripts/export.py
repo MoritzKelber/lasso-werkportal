@@ -13,8 +13,11 @@ import json
 import sqlite3
 from pathlib import Path
 
-from rdflib import DCTERMS, Graph, Literal, Namespace, URIRef
+from rdflib import DCTERMS, OWL, Graph, Literal, Namespace, URIRef
 from rdflib.namespace import RDF
+
+GND = Namespace("https://d-nb.info/gnd/")
+VIAF = Namespace("https://viaf.org/viaf/")
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "db" / "werke.sqlite"
@@ -29,7 +32,8 @@ WERK = Namespace(SITE_BASE + "werke/")
 QUERY = """
 SELECT
     w.id, w.lv_nummer, w.lv_haupt, w.lv_unter, w.lv_teil, w.titel, w.stimmen,
-    w.textprovenienz, p.name AS textdichter, e.code AS edition, q.referenz AS quelle
+    w.textprovenienz, p.name AS textdichter, p.gnd_id AS textdichter_gnd,
+    p.viaf_id AS textdichter_viaf, e.code AS edition, q.referenz AS quelle
 FROM werke w
 LEFT JOIN personen  p ON p.id = w.textdichter_id
 LEFT JOIN editionen e ON e.id = w.edition_id
@@ -64,7 +68,15 @@ def write_ttl(werke: list[dict]) -> None:
         g.add((subject, DCTERMS.identifier, Literal(werk["lv_nummer"])))
         g.add((subject, DCTERMS.title, Literal(werk["titel"], lang="it")))
         if werk["textdichter"]:
-            g.add((subject, DCTERMS.creator, Literal(werk["textdichter"])))
+            if werk["textdichter_gnd"]:
+                person = URIRef(GND[werk["textdichter_gnd"]])
+                g.add((subject, DCTERMS.creator, person))
+                g.add((person, RDF.type, LASSO.Textdichter))
+                g.add((person, DCTERMS.identifier, Literal(werk["textdichter"])))
+                if werk["textdichter_viaf"]:
+                    g.add((person, OWL.sameAs, URIRef(VIAF[werk["textdichter_viaf"]])))
+            else:
+                g.add((subject, DCTERMS.creator, Literal(werk["textdichter"])))
         if werk["stimmen"] is not None:
             g.add((subject, LASSO.stimmen, Literal(werk["stimmen"])))
         if werk["textprovenienz"]:
