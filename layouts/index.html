@@ -26,7 +26,7 @@
       <td data-key="titel">{{ if .lv_unter }}{{ .titel }}{{ else }}<a href="{{ "werke/" | relURL }}{{ printf "%.0f" .id }}/" target="_blank" rel="noopener">{{ .titel }}</a>{{ end }}</td>
       <td data-key="stimmen">{{ if .stimmen }}{{ .stimmen }}{{ end }}</td>
       <td data-key="edition">{{ .edition }}</td>
-      <td data-key="textdichter">{{ .textdichter }}{{ if or .textdichter_gnd .textdichter_viaf }}({{ partial "normdaten-links.html" (dict "gnd" .textdichter_gnd "viaf" .textdichter_viaf) }}){{ end }}</td>
+      <td data-key="textdichter">{{ .textdichter }}{{ if or .textdichter_gnd .textdichter_viaf }} ({{ partial "normdaten-links.html" (dict "gnd" .textdichter_gnd "viaf" .textdichter_viaf) }}){{ end }}</td>
       <td data-key="textprovenienz">{{ .textprovenienz }}</td>
       <td data-key="quelle">{{ .quelle }}</td>
     </tr>

@@ -18,7 +18,7 @@
 
     {{ with .Params.textdichter }}
     <dt>Textdichter</dt>
-    <dd>{{ . }}{{ if or $.Params.textdichterGnd $.Params.textdichterViaf }}({{ partial "normdaten-links.html" (dict "gnd" $.Params.textdichterGnd "viaf" $.Params.textdichterViaf) }}){{ end }}</dd>
+    <dd>{{ . }}{{ if or $.Params.textdichterGnd $.Params.textdichterViaf }} ({{ partial "normdaten-links.html" (dict "gnd" $.Params.textdichterGnd "viaf" $.Params.textdichterViaf) }}){{ end }}</dd>
     {{ end }}
 
     {{ with .Params.textprovenienz }}
